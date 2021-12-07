@@ -10,7 +10,8 @@ let winston = require('winston');
 let fs = require('fs');
 let config = process.appConfig || {};
 let options = require('../config/loggerConfig');
-require('winston-daily-rotate-file');
+
+const DailyRotateFile = require('winston-daily-rotate-file');
 
 // DEFAULT config
 const DEFAULT = {
@@ -60,7 +61,9 @@ try {
     fs.mkdirSync(logRoot);
 }
 // export Logger instance
-module.exports = new (winston.Logger)({
+// module.exports = new (winston.Logger)({
+   
+module.exports = winston.createLogger({
     level: options.level || 'debug',
     transports: [
         new winston.transports.Console(DEFAULT),
@@ -95,3 +98,9 @@ module.exports = new (winston.Logger)({
     ],
     exitOnError: !1
 });
+// .configure({
+//     level: 'verbose',
+//     transports: [
+//       new DailyRotateFile(opts)
+//     ]
+// })

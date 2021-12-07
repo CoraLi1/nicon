@@ -44,7 +44,7 @@ class IconDraftController {
      */
     async saveDraftIcon (ctx) {
         let userInfo = ctx.userInfo;
-        let fileParams = (ctx.request.body || {}).files;
+        let fileParams = (ctx.request || {}).files;
 
         if (!/\.svg$/.exec(fileParams.file.name)) {
             ctx.body = responseFormat.responseFormat(200, '请上传svg格式图片！', false);

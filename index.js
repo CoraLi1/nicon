@@ -86,6 +86,7 @@ async function start () {
     // 文件上传multiple/from-data 解析到req.body
     app.use(koaBody({
         multipart: true,
+        // strict: false
         urlencoded: true
     }));
 

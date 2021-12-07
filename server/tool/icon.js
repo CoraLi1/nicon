@@ -11,6 +11,7 @@ let rev = require('gulp-rev');
 let path = require('path');
 let fileUtil = require('../util/fileUtil');
 
+var runTimestamp = Math.round(Date.now()/1000);
 module.exports = {
     async compileSvg2Icon (repoPath, iconPrefix, fontPath = '../fonts/') {
         let svgPath = path.join(repoPath, './svg/*.svg');
@@ -25,12 +26,13 @@ module.exports = {
         return new Promise((resolve, reject) => {
             gulp.src([svgPath])
                 .pipe(iconfont({
+
                     fontName: iconPrefix,
-                    // prependUnicode: true,
-                    // startUnicode: 0xE001,
+                    prependUnicode: true, // recommended option
                     formats: ['svg', 'ttf', 'eot', 'woff'],
                     normalize: true,
                     centerHorizontally: true,
+                    timestamp: runTimestamp, //
                     fontHeight: 1024 // must need for perfect icon
                 }))
                 .on('error', function (e) {
