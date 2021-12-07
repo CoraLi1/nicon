@@ -3,11 +3,11 @@
 # DB config
 
 # mongodb
-export MONGODB_NAME=iconRepo;
+export MONGODB_NAME=admin;
 export MONGODB_HOST=127.0.0.1;
 export MONGODB_PORT=27017;
-export MONGODB_USERNAME='';
-export MONGODB_PASSWORD='';
+export MONGODB_USERNAME='root';
+export MONGODB_PASSWORD='123456';
 
 
 # redis

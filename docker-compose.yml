@@ -1,0 +1,26 @@
+version: '3'
+services:
+  redis-server:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    restart: always
+    
+  mongodb:
+    image: admin # 需要先远程授权登录
+    restart: always
+    ports: 
+      - "27017:27017"
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+
+  server:
+    image: iconfont
+    ports:
+    - "4348:4348"
+    depends_on:
+    - mongodb
+
+    links:
+    - mongodb:db

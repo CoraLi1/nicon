@@ -192,12 +192,12 @@ class RepoController {
         for (let r = (query.pageIndex - 1) * query.pageSize; r < Math.min((query.pageIndex) * query.pageSize, userItem.repos.length); r++) {
             let repoItem = await db.iconRepo.findOne({
                 repoId: userItem.repos[r].repoId
-            }, global.globalConfig.iconRepoExportFields);
+            }, global.globalConfig.iconRepoExportFields) || {};
 
             // traverse repo list for finding icon that belong to repo
             repoItem.icons = [];
             repoItem.iconCount = (repoItem.iconIds || []).length;
-            for (let j = 0; j < Math.min(repoItem.iconIds.length, constant.REPO_LIST_CONTAIN_ICON_COUNT_PER_REPO); j++) {
+            for (let j = 0; j < Math.min(repoItem.iconCount, constant.REPO_LIST_CONTAIN_ICON_COUNT_PER_REPO); j++) {
                 let iconItem = await db.icon.findOne(
                     {
                         iconId: repoItem.iconIds[j].iconId
