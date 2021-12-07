@@ -48,7 +48,7 @@ module.exports = {
         let expiredTime = expired ? new Date(config.defaultExpiresTime) : null;
         ctx.cookies.set('ICON_SESSION', value, {
             path: '/',
-            domain: config.host,
+            // domain: config.host,
             expires: expiredTime,
             httpOnly: true
         })
@@ -66,7 +66,7 @@ module.exports = {
         let expiredTime = expired ? new Date(config.defaultExpiresTime) : new Date(global.globalConfig.nowTime + config.autoLoginSessionExpires);
         ctx.cookies.set('ICON_AUTO_LOGIN_SESSION', value, {
             path: '/',
-            domain: config.host,
+            // domain: config.host,
             expires: expiredTime,
             httpOnly: true
         });
